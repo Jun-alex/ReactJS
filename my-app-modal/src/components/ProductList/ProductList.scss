@@ -1,0 +1,23 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+
+}
+
+.star-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: .625rem;
+  right: .625rem;
+}
+
+.star-icon.favorite {
+  color: orange;
+}
+
+.name-product {
+  color: #3630a8;
+}

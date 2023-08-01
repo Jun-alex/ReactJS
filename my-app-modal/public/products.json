@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Телевізор Samsung",
+        "price": "28999",
+        "image": "./images/samsung.jpg",
+        "article": "123123",
+        "color": "grey"
+    },
+    {
+        "id": 2,
+        "name": "Телевізор LG",
+        "price": "14699",
+        "image": "./images/lg.jpg",
+        "article": "323123",
+        "color": "black"
+    },
+    {
+        "id": "3",
+        "name": "Телевізор Samsung",
+        "price": "9999",
+        "image": "./images/samsung2.jpg",
+        "article": "94088",
+        "color": "white"
+    },
+    {
+        "id": "4",
+        "name": "Мобільний телефон Samsung",
+        "price": "13499",
+        "image": "./images/phone.jpg",
+        "article": "134088",
+        "color": "black"
+    },
+    {
+        "id": "5",
+        "name": "Мобільний телефон Apple",
+        "price": "22999",
+        "image": "./images/phone2.jpg",
+        "article": "432345",
+        "color": "red"
+    },
+    {
+        "id": "6",
+        "name": "Смарт-годинник Apple Watch",
+        "price": "12299",
+        "image": "./images/app-watch.jpg",
+        "article": "676545",
+        "color": "black"
+    },
+    {
+        "id": "7",
+        "name": "Відеокамера GoPro",
+        "price": "18999",
+        "image": "./images/camera.jpg",
+        "article": "786564",
+        "color": "black"
+    },
+    {
+        "id": "8",
+        "name": "Навушники Razer",
+        "price": "3499",
+        "image": "./images/headphones.jpg",
+        "article": "677557",
+        "color": "black"
+    },
+    {
+        "id": "9",
+        "name": "Мобільний телефон Samsung",
+        "price": "34499",
+        "image": "./images/phone3.jpg",
+        "article": "547578",
+        "color": "grey"
+    },
+    {
+        "id": "10",
+        "name": "Мобільний телефон Xiaomi",
+        "price": "9699",
+        "image": "./images/phone4.jpg",
+        "article": "987559",
+        "color": "blue"
+    }
+]

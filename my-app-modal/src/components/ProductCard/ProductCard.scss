@@ -1,0 +1,24 @@
+$star-icon-color: gray;
+$star-icon-color-favorite: gold;
+
+.favorite-icon {
+  color: $star-icon-color;
+  cursor: pointer;
+  padding-left: 0.625rem;
+
+  &.favorite-icon-active {
+    color: $star-icon-color-favorite;
+  }
+}
+
+.product-card {
+  max-width: 15.625rem;
+  border: 0.3125rem solid #ccc;
+  border-radius: .3125rem;
+  padding: .625rem;
+}
+
+.product-card img {
+  max-width: 100%;
+  max-height: 18.75rem;
+}
