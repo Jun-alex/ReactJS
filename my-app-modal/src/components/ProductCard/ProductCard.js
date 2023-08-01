@@ -118,8 +118,12 @@ class ProductCard extends React.PureComponent {
         </span>
 
         {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">{modalContent}</div>
+          <div className="modal"
+          onClick={this.closeModal}>
+            <div className="modal-content"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}>{modalContent}</div>
           </div>
         )}
       </div>
