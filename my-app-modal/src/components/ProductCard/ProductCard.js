@@ -10,7 +10,7 @@ class ProductCard extends React.PureComponent {
     this.state = {
       isFavorite: this.getFavoriteStatusFromLocalStorage(),
       isModalOpen: false,
-      isAddedToCart: false,
+      // isAddedToCart: false,
     };
   }
 
@@ -20,15 +20,9 @@ class ProductCard extends React.PureComponent {
     return favoritesData.some((item) => item.id === product.id);
   };
 
+  //добавляем один товар несколько раз
   handleAddToCart = () => {
-    const { product, cart } = this.props;
-    const isInCart = cart.some((item) => item.id === product.id);
-
-    if (isInCart) {
-      this.setState({ isAddedToCart: true });
-    } else {
-      this.setState({ isModalOpen: true });
-    }
+    this.setState({ isModalOpen: true });
   };
 
   closeModal = () => {
