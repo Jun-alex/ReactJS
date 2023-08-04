@@ -1,7 +1,14 @@
 import React from "react";
+
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import ProductList from "../ProductList/ProductList";
 import Header from "../Header/Header";
-import "./App.scss"
+
+import CartPage from "../CartPage/CartPage";
+import FavoritesPage from "../FavoritesPage/FavoritesPage";
+
+import "./App.scss";
 
 export default class App extends React.PureComponent {
   constructor(props) {
@@ -58,19 +65,60 @@ export default class App extends React.PureComponent {
     localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
   }
 
+  //Код для корзины
+  handleRemoveFromCart = (product) => {
+    this.setState((prevState) => ({
+      cart: prevState.cart.filter((item) => item.id !== product.id),
+    }));
+  };
+
   render() {
     const { products, cart, favorites } = this.state;
 
     return (
-      <div className="app">
-        <Header cartCount={cart.length} favoritesCount={favorites.length} />
-        <ProductList
-          products={products}
-          cart={cart}
-          onAddToCart={this.handleAddToCart}
-          onToggleFavorite={this.handleToggleFavorite}
-        />
-      </div>
+      <Router>
+        <div className="app">
+          <Header cartCount={cart.length} favoritesCount={favorites.length} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProductList
+                  products={products}
+                  cart={[]}
+                  showRemoveIcon={false}
+                  onAddToCart={this.handleAddToCart}
+                  onToggleFavorite={this.handleToggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <ProductList
+                  products={cart}
+                  cart={cart}
+                  showRemoveIcon
+                  onAddToCart={this.handleAddToCart}
+                  onToggleFavorite={this.handleToggleFavorite}
+                  onRemoveFromCart={this.handleRemoveFromCart}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <ProductList
+                  products={favorites}
+                  cart={cart}
+                  onAddToCart={this.handleAddToCart}
+                  onToggleFavorite={this.handleToggleFavorite}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
     );
   }
 }

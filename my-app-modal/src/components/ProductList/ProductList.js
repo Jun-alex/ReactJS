@@ -1,9 +1,15 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import "./ProductList.scss"
+import "./ProductList.scss";
 
-
-const ProductList = ({ products, cart, onAddToCart, onToggleFavorite }) => {
+const ProductList = ({
+  products,
+  cart,
+  onAddToCart,
+  onToggleFavorite,
+  onRemoveFromCart,
+  showRemoveIcon,
+}) => {
   return (
     <div className="product-list">
       {products.map((product) => (
@@ -11,8 +17,10 @@ const ProductList = ({ products, cart, onAddToCart, onToggleFavorite }) => {
           key={product.id}
           product={product}
           cart={cart}
+          showRemoveIcon={showRemoveIcon}
           onAddToCart={onAddToCart}
           onToggleFavorite={onToggleFavorite}
+          onRemoveFromCart={onRemoveFromCart}
         />
       ))}
     </div>

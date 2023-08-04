@@ -3,7 +3,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: .625rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -13,10 +13,22 @@ header {
 }
 
 .header-icon {
-  font-size: 24px;
-  margin-right: 5px;
+  font-size: 1.5rem;
+  margin-right: .3125rem;
 }
 
 .title-page {
   color: #2b8787;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.header-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5625rem;
+  padding: 0;
 }

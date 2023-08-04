@@ -2,6 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import "./ProductCard.scss";
 
 class ProductCard extends React.PureComponent {
@@ -22,6 +23,10 @@ class ProductCard extends React.PureComponent {
 
   //добавляем один товар несколько раз
   handleAddToCart = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  openModal = () => {
     this.setState({ isModalOpen: true });
   };
 
@@ -65,9 +70,17 @@ class ProductCard extends React.PureComponent {
     this.setState({ isModalOpen: false });
   };
 
+  //Код для корзины
+  handleRemoveFromCart = () => {
+    const { product, onRemoveFromCart } = this.props;
+    onRemoveFromCart(product);
+  };
+
   render() {
-    const { product } = this.props;
+    const { product, cart, showRemoveIcon } = this.props;
     const { isFavorite, isModalOpen } = this.state;
+
+    const isInCart = cart.some((item) => item.id === product.id);
 
     const modalContent = (
       <>
@@ -111,14 +124,35 @@ class ProductCard extends React.PureComponent {
           <FaStar className={isFavorite ? "favorite-icon-active" : ""} />
         </span>
 
+        {showRemoveIcon && isInCart && (
+          <span className="remove-from-cart-icon" onClick={this.openModal}>
+            &times;
+          </span>
+        )}
+
         {isModalOpen && (
-          <div className="modal"
-          onClick={this.closeModal}>
-            <div className="modal-content"
-            onClick={(event) => {
-              event.stopPropagation();
-            }}>{modalContent}</div>
+          <div className="modal" onClick={this.closeModal}>
+            <div
+              className="modal-content"
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              {modalContent}
+            </div>
           </div>
+        )}
+
+        {showRemoveIcon && isInCart && (
+          <ConfirmationModal
+            product={product}
+            isOpen={isModalOpen}
+            onCancel={this.closeModal}
+            onConfirm={() => {
+              this.props.onRemoveFromCart(product);
+              this.closeModal();
+            }}
+          />
         )}
       </div>
     );
@@ -136,6 +170,9 @@ ProductCard.propTypes = {
   }).isRequired,
   onAddToCart: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
+
+  cart: PropTypes.bool.isRequired,
+  onRemoveFromCart: PropTypes.func.isRequired,
 };
 
 ProductCard.defaultProps = {
@@ -147,6 +184,8 @@ ProductCard.defaultProps = {
     article: "",
     color: "",
   },
+
+  cart: false,
 };
 
 export default ProductCard;
