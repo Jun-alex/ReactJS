@@ -1,15 +1,26 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import ProductList from "../ProductList/ProductList";
+
+import { removeFromCart } from "../../redux/actions";
+
 import "./CartPage.scss";
 
-const CartPage = ({ cart, onRemoveFromCart }) => {
+const CartPage = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product.id));
+  };
+
   return (
     <div>
-      <h2>Корзина</h2>
       <ProductList
         products={cart}
-        onRemoveFromCart={onRemoveFromCart}
         showRemoveIcon
+        onRemoveFromCart={handleRemoveFromCart}
       />
     </div>
   );

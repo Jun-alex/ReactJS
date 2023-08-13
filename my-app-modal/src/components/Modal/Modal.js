@@ -1,39 +1,35 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setModalStatus } from "../../redux/actions";
+
 import "./Modal.scss";
 
-export default class Modal extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-    };
-  }
+const Modal = ({ children }) => {
+  const isModalOpen = useSelector((state) => state.isModalOpen);
+  const dispatch = useDispatch();
 
-  handleAddToCart = () => {
-    this.setState({ isModalOpen: true });
+  const handleAddToCart = () => {
+    dispatch(setModalStatus(true));
   };
 
-  closeModal = () => {
-    this.setState({ isModalOpen: false });
+  const closeModal = () => {
+    dispatch(setModalStatus(false));
   };
 
-  render() {
-    const { children } = this.props;
-    const { isModalOpen } = this.state;
-
-    return (
-      <div>
-        <button onClick={this.handleAddToCart}>Add to cart</button>
-        {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              {children}
-              <button onClick={this.closeModal}>Ok</button>
-              <button onClick={this.closeModal}>Cancel</button>
-            </div>
+  return (
+    <div>
+      <button onClick={handleAddToCart}>Add to cart</button>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            {children}
+            <button onClick={closeModal}>Ok</button>
+            <button onClick={closeModal}>Cancel</button>
           </div>
-        )}
-      </div>
-    );
-  }
-}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Modal;
